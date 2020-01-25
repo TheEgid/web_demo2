@@ -18,7 +18,7 @@ sudo ln -sf /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
 
 
-gunicorn hello:app --bind='0.0.0.0:8080' &
+#gunicorn hello:app --bind='0.0.0.0:8080' &
 
 #python3 manage.py runserver 0.0.0.0:8000
 
