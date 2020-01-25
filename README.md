@@ -10,13 +10,13 @@ _РАБОЧАЯ ПАПКА - /home/box/web
 
 ```
 
-git clone https://github.com/TheEgid/-web_demo2
+git clone https://github.com/TheEgid/web_demo2
 
-sudo chmod g+rwx -web_demo2
+sudo chmod g+rwx web_demo2
 
 pkill gunicorn
 
-sudo mv -web_demo2
+sudo mv web_demo2
 
 cd web && bash init.sh
 
