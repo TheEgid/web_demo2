@@ -16,7 +16,7 @@ sudo chmod g+rwx web_demo2
 
 pkill gunicorn
 
-sudo mv web_demo2
+sudo mv web
 
 cd web && bash init.sh
 
