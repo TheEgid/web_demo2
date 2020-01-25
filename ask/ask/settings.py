@@ -63,14 +63,12 @@ WSGI_APPLICATION = 'ask.wsgi.application'
 if platform.system() != "Windows":
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv("POSTGRES_DB1"),
-            'USER': os.getenv("POSTGRES_USER1"),
-            'PASSWORD': os.getenv("POSTGRES_PASSWORD1"),
-            'HOST': 'database1',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'stepic_web',
+            'USER': 'box',
         }
     }
+
 else:
     DATABASES = {
         'default': {
