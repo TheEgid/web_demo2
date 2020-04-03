@@ -9,15 +9,15 @@ def page(request):
     object_list = Question.objects.all()
     paginator = Paginator(object_list, 10)
     page = request.GET.get('page')
+
+    if not page:
+        page = 1
     try:
         questions = paginator.page(page)
     except PageNotAnInteger:
         questions = paginator.page(1)
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
-
-    if not page:
-        page = 1
 
     all_pages = int(paginator.num_pages)
     return render(request, 'page.html',
@@ -31,15 +31,15 @@ def popular_page(request):
     object_list = Question.objects.popular()
     paginator = Paginator(object_list, 10)
     page = request.GET.get('page')
+
+    if not page:
+        page = 1
     try:
         questions = paginator.page(page)
     except PageNotAnInteger:
         questions = paginator.page(1)
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
-
-    if not page:
-        page = 1
 
     all_pages = int(paginator.num_pages)
     return render(request, 'popular_page.html',
@@ -65,4 +65,4 @@ def test(request, *args, **kwargs):
 #     return render(request, 'index.html')
 #
 
-    #return render(request, 'catalog_main.html', context)
+#return render(request, 'catalog_main.html', context)
