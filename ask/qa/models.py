@@ -28,6 +28,6 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(null=False, blank=False, auto_now_add=True)
-    question = models.ForeignKey(Question, related_name='answer', default=1, blank=False, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='answer_set', default=1, blank=False, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
