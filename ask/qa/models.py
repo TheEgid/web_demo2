@@ -13,13 +13,6 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
 
-class Answer(models.Model):
-    text = models.TextField()
-    added_at = models.DateTimeField()
-    #question = models.ManyToManyField(Question, related_name='answer', default=1, blank=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class Question(models.Model):
     objects = QuestionManager()
 
@@ -30,5 +23,11 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='likes_user')
     slug = models.SlugField(verbose_name='URL', default=1, max_length=50, unique=False, )
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+
+
+class Answer(models.Model):
+    text = models.TextField()
+    added_at = models.DateTimeField()
+    question = models.ForeignKey(Question, related_name='answer', default=1, blank=False, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 

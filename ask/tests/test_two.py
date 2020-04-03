@@ -1,4 +1,5 @@
 import unittest
+
 from qa.models import QuestionManager
 from qa.models import Answer
 from qa.models import Question
@@ -11,8 +12,9 @@ from django.contrib.auth.models import User
 
 
 class TestModels(unittest.TestCase):
-    def test_import(self):
-        import qa.models
+    pass
+    # def test_import(self):
+    #     import ..models
 
 class TestUser(unittest.TestCase):
     def test_user(self):
@@ -126,5 +128,5 @@ class TestAnswer(unittest.TestCase):
         except:
             assert False, "Failed to create answer model, check db connection"
 
-# suite = unittest.TestLoader().loadTestsFromTestCase(globals().get(sys.argv[1]))
-# unittest.TextTestRunner(verbosity=0).run(suite)
+suite = unittest.TestLoader().loadTestsFromTestCase(globals().get(sys.argv[1]))
+#unittest.TextTestRunner(verbosity=0).run(suite)
