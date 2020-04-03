@@ -36,7 +36,7 @@ except ImportError:
 def run_tests(*test_args):
     """Discover and run tests."""
     if not test_args:
-        test_args = ['tests.test_one'] #, 'tests.test_two']
+        test_args = ['tests.test_one']
 
     testrunner = get_runner(settings)
     test_runner = testrunner(verbosity=2, interactive=True)
@@ -47,6 +47,3 @@ def run_tests(*test_args):
 
 if __name__ == '__main__':
     run_tests(*sys.argv[1:])
-
-# if __name__ == '__main__':
-#     unittest.main()

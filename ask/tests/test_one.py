@@ -1,18 +1,17 @@
 import unittest
-import datetime
-from bs4 import BeautifulSoup
+import time
 from django.test import Client
-# from blog.models import CatalogPage, Gallery
-from qa.models import QuestionManager
-from qa.models import Answer
-from qa.models import Question
-
+from django.contrib.auth.models import User
+from django.db.models import Max
 from django.db.models.fields import FieldDoesNotExist
 from django.db.models.fields import CharField, TextField, IntegerField, \
     DateField
 from django.db.models.fields.related import ForeignKey, ManyToManyField
 from django.utils import timezone
-from django.contrib.auth.models import User
+
+from qa.models import QuestionManager
+from qa.models import Answer
+from qa.models import Question
 
 
 class SimpleTest(unittest.TestCase):
@@ -140,3 +139,24 @@ class TestAnswer(unittest.TestCase):
             question.save()
         except:
             assert False, "Failed to create answer model, check db connection"
+
+class TestInitData(unittest.TestCase):
+    def test_import(self):
+        res = Question.objects.all().aggregate(Max('rating'))
+        max_rating = res['rating__max'] or 0
+        user, _ = User.objects.get_or_create(
+            username='x',
+            defaults={'password':'y', 'last_login': timezone.now()})
+        for i in range(30):
+            question = Question.objects.create(
+                title='question ' + str(i),
+                text='text ' + str(i),
+                author=user,
+                rating=max_rating+i
+            )
+        time.sleep(2)
+        question = Question.objects.create(title='question last', text='text', author=user)
+        question, _ = Question.objects.get_or_create(pk=3141592, title='question about pi', text='what is the last digit?', author=user)
+        #question.answer_set.all().delete()
+        for i in range(10):
+            answer = Answer.objects.create(text='answer ' + str(i), question=question, author=user)
