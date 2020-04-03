@@ -1,11 +1,15 @@
 sudo apt update
-sudo apt install python3.5
-sudo apt install python3.5-dev
-sudo unlink /usr/bin/python3
-sudo ln -s /usr/bin/python3.5 /usr/bin/python3
+sudo apt-get install sqlite3 libsqlite3-dev
+sudo apt install python3.8
+sudo apt install python3.8-dev
+#sudo apt install python3.5
+#sudo apt install python3.5-dev
+sudo unlink /usr/bin/python8
+sudo ln -s /usr/bin/python3.8 /usr/bin/python3
 
 sudo python3 -m pip install gunicorn
-sudo python3 -m pip install django==2.2.2
+#sudo python3 -m pip install django==2.2.2
+sudo python3 -m pip install django==3.0.5
 sudo python3 -m pip install mysqlclient
 
 
