@@ -29,7 +29,6 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='likes_user')
-    slug = models.SlugField(verbose_name='URL', default=slugify(random.randint(899, 4657)), max_length=50, unique=False, )
+    slug = models.SlugField(verbose_name='URL', default=1, max_length=50, unique=False, )
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
-
 
