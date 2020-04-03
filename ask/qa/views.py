@@ -28,7 +28,7 @@ def page(request):
 
 
 def popular_page(request):
-    object_list = Question.objects.popular().order_by('-pk')
+    object_list = Question.objects.popular()
     paginator = Paginator(object_list, 10)
     page = request.GET.get('page')
 
@@ -61,10 +61,3 @@ def question(request, slug):
 
 def test(request, *args, **kwargs):
     return HttpResponse('Ny_OK')
-
-
-# def index(request):
-#     return render(request, 'index.html')
-#
-
-#return render(request, 'catalog_main.html', context)
