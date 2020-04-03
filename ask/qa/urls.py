@@ -11,8 +11,8 @@ urlpatterns = [
 
 	url(r'^login/', test, name='login'),
 	url(r'^signup/', test, name='signup'),
-	path('question/<slug:slug>/', question, name='question'),
-	#url(r'^question/<slug:slug>/', question, name='question'),
+	#path('question/<slug:slug>/', question, name='question'),
+	url(r'^question/<slug:slug>/', question, name='question'),
 	url(r'^ask/', test, name='ask'),
 
 	url(r'^new/', test, name='new'),

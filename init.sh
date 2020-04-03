@@ -6,7 +6,7 @@ sudo unlink /usr/bin/python3
 sudo ln -s /usr/bin/python3.5 /usr/bin/python3
 
 sudo python3 -m pip install gunicorn
-sudo python3 -m pip install django==2.2.2
+sudo python3 -m pip install django==2.0.7  #2.2.2
 sudo python3 -m pip install sqlparse==0.3.0
 
 
