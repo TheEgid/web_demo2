@@ -6,6 +6,8 @@
 {{ question.text }}
 
 
-{{ question.answer.text }}
+{% for answer in answers %}
+    {{ answer.text }}
+{% endfor %}
 
 

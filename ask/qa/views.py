@@ -6,7 +6,7 @@ from django.views.decorators.http import require_GET
 
 
 def page(request):
-    object_list = Question.objects.all()
+    object_list = Question.objects.all().order_by('-pk')
     paginator = Paginator(object_list, 10)
     page = request.GET.get('page')
 
@@ -28,7 +28,7 @@ def page(request):
 
 
 def popular_page(request):
-    object_list = Question.objects.popular()
+    object_list = Question.objects.popular().order_by('-pk')
     paginator = Paginator(object_list, 10)
     page = request.GET.get('page')
 
@@ -52,8 +52,10 @@ def popular_page(request):
 @require_GET
 def question(request, slug):
     question = get_object_or_404(Question, slug=slug)
+    answers = question.answer_set.all()
     return render(request, 'question.html', {
         'question': question,
+        'answers': answers,
     })
 
 
