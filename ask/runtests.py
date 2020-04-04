@@ -1,8 +1,6 @@
 import sys
 import os
-import unittest
-from os.path import abspath, dirname, join
-
+from os.path import dirname
 
 
 try:
@@ -15,12 +13,7 @@ try:
     try:
         import django
         # tp = abspath(join(dirname(__file__), '.'))
-        # print(tp)
-        # breakpoint()
         sys.path.append(dirname(__file__))
-
-        #print(sys.path.append(abspath(join(dirname(__file__), 'ask.ask'))))
-
         setup = django.setup
     except AttributeError:
         pass
@@ -34,7 +27,6 @@ except ImportError:
 
 
 def run_tests(*test_args):
-    """Discover and run tests."""
     if not test_args:
         test_args = ['tests.test_one']
 

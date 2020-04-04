@@ -1,8 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+import time
 import random
-from django.urls import reverse
+
+
+def generate_unical_hash(_lon=3):
+    def has_letters(_):
+        return any(symbol.isalpha() for symbol in _)
+    offset = random.randint(100, 400)
+    while has_letters('{0:010x}'.format(int(time.time() * offset))[:_lon]):
+        return '{0:010x}'.format(int(time.time() * offset))[:_lon]
+    else:
+        return generate_unical_hash()
 
 
 class QuestionManager(models.Manager):
@@ -22,7 +32,13 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='likes_user')
-    slug = models.SlugField(verbose_name='URL', default=1, max_length=50, unique=False, )
+    slug = models.SlugField(unique=True, max_length=50)
+
+    def save(self, *args, **kwargs):
+        strtime = "".join(str(time.time()).split("."))[6:]
+        hash = generate_unical_hash()
+        self.slug = slugify(strtime + hash)
+        super(Question, self).save(*args, **kwargs)
 
 
 class Answer(models.Model):

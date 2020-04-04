@@ -1,4 +1,3 @@
-from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Answer, Question
 from django.shortcuts import render, get_object_or_404
@@ -52,12 +51,9 @@ def popular_page(request):
 @require_GET
 def question(request, slug):
     question = get_object_or_404(Question, slug=slug)
-    answers = question.answer_set.all()
+    answers = Answer.objects.filter(question_id=question.id)
+    #Answer.objects.filter(post=post).count(),
     return render(request, 'question.html', {
         'question': question,
         'answers': answers,
     })
-
-
-def test(request, *args, **kwargs):
-    return HttpResponse('Ny_OK')
