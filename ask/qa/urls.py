@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.urls import path
-from qa.views import page, popular_page, question
+from qa.views import page, popular_page, question, test
 
 
 urlpatterns = [

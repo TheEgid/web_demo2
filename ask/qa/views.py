@@ -2,6 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Answer, Question
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
+from django.http import HttpResponse
 
 
 def page(request):
@@ -57,3 +58,7 @@ def question(request, slug):
         'question': question,
         'answers': answers,
     })
+
+
+def test(request, *args, **kwargs):
+    return HttpResponse('NU_OK')
