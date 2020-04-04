@@ -34,12 +34,6 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name='likes_user')
     slug = models.SlugField(unique=True, max_length=50)
 
-
-
-    # @property
-    # def city_id(self):
-    #     return self.id
-
     def save(self, *args, **kwargs):
         strtime = "".join(str(time.time()).split("."))[6:]
         hash = generate_unical_hash()
