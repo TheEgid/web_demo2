@@ -50,10 +50,10 @@ def popular_page(request):
 
 
 @require_GET
-def question(request, slug):
-    question = get_object_or_404(Question, slug=slug)
+def question(request, id):
+    question = get_object_or_404(Question, id=id)
     answers = Answer.objects.filter(question_id=question.id)
-    #Answer.objects.filter(post=post).count(),
+
     return render(request, 'question.html', {
         'question': question,
         'answers': answers,

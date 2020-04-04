@@ -158,5 +158,5 @@ class TestInitData(unittest.TestCase):
         question = Question.objects.create(title='question last', text='text', author=user)
         question, _ = Question.objects.get_or_create(pk=3141592, title='question about pi', text='what is the last digit?', author=user)
         question.answer_set.all().delete()
-        for i in range(10):
+        for i in range(5):
             answer = Answer.objects.create(text='answer ' + str(i), question=question, author=user)
