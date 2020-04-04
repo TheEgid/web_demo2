@@ -70,6 +70,8 @@ if platform.system() != "Windows":
     }
 
 else:
+    import pymysql
+    pymysql.install_as_MySQLdb()
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
